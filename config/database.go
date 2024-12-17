@@ -17,7 +17,6 @@ func NewDatabase() (*DatabaseConfig, error) {
 		return nil, err
 	}
 
-	// Crear la tabla si no existe
 	createTableSQL := `CREATE TABLE IF NOT EXISTS tasks (
 		"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		"title" TEXT,

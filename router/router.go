@@ -7,11 +7,13 @@ import (
 	"github.com/gorilla/mux"
 )
 
+const uriTask string = "/tasks"
+
 func NewRouter(handler *handlers.TaskHandler) *mux.Router {
-	r := mux.NewRouter()
+	router := mux.NewRouter()
 
-	r.HandleFunc("/tasks", handler.CreateTaskHandler).Methods(http.MethodPost)
-	r.HandleFunc("/tasks", handler.GetAllTasksHandler).Methods(http.MethodGet)
+	router.HandleFunc(uriTask, handler.CreateTaskHandler).Methods(http.MethodPost)
+	router.HandleFunc(uriTask, handler.GetAllTasksHandler).Methods(http.MethodGet)
 
-	return r
+	return router
 }

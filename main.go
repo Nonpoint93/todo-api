@@ -18,7 +18,7 @@ func main() {
 	}
 
 	taskRepo := repositories.NewTaskRepositoryImpl(dbConfig.DB)
-	taskService := services.NewTaskService(taskRepo)
+	taskService := services.NewTaskServiceImpl(taskRepo)
 	taskHandler := handlers.NewTaskHandler(taskService)
 
 	r := router.NewRouter(taskHandler)

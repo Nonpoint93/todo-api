@@ -1,5 +1,3 @@
-// handlers/task_handler.go
-
 package handlers
 
 import (
@@ -8,17 +6,15 @@ import (
 	"todo-api/services"
 )
 
-// TaskHandler define las dependencias necesarias.
 type TaskHandler struct {
-	Service *services.TaskService
+	Service services.TaskService
 }
 
-// NewTaskHandler crea una instancia de TaskHandler.
-func NewTaskHandler(service *services.TaskService) *TaskHandler {
+func NewTaskHandler(service services.TaskService) *TaskHandler {
 	return &TaskHandler{Service: service}
 }
 
-func (h *TaskHandler) CreateTaskHandler(w http.ResponseWriter, r *http.Request) {
+func (taskHandler *TaskHandler) CreateTaskHandler(w http.ResponseWriter, r *http.Request) {
 	var input struct {
 		Title string `json:"title"`
 	}
@@ -27,7 +23,7 @@ func (h *TaskHandler) CreateTaskHandler(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	if err := h.Service.CreateTask(input.Title); err != nil {
+	if err := taskHandler.Service.CreateTask(input.Title); err != nil {
 		http.Error(w, "Failed to create task", http.StatusInternalServerError)
 		return
 	}
@@ -36,8 +32,8 @@ func (h *TaskHandler) CreateTaskHandler(w http.ResponseWriter, r *http.Request) 
 	w.Write([]byte(`{"message": "Task created successfully"}`))
 }
 
-func (h *TaskHandler) GetAllTasksHandler(w http.ResponseWriter, r *http.Request) {
-	tasks, err := h.Service.GetAllTasks()
+func (taskHandler *TaskHandler) GetAllTasksHandler(w http.ResponseWriter, r *http.Request) {
+	tasks, err := taskHandler.Service.GetAllTasks()
 	if err != nil {
 		http.Error(w, "Failed to fetch tasks", http.StatusInternalServerError)
 		return
