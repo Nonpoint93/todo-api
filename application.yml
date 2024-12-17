@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+endpoints:
+  - path: "/tasks"
+    method: "GET"
+    description: "Retrieve all tasks"
+  - path: "/tasks"
+    method: "POST"
