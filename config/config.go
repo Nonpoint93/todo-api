@@ -15,6 +15,7 @@ type Endpoint struct {
 	Path        string `yaml:"path"`
 	Method      string `yaml:"method"`
 	Description string `yaml:"description"`
+	Handler     string `yaml: handler`
 }
 
 type Config struct {

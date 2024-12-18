@@ -5,5 +5,9 @@ endpoints:
   - path: "/tasks"
     method: "GET"
     description: "Retrieve all tasks"
+    handler: "GetTasks"
+
   - path: "/tasks"
     method: "POST"
+    description: "Create a new task"
+    handler: "CreateTask"
